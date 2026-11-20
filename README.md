@@ -6,7 +6,6 @@
 
 https://aiinv.github.io/ERROR/
 
-（也可访问 https://aiinv.github.io/ERROR/dino.html ）
 
 ## 玩法
 
@@ -19,5 +18,4 @@ https://aiinv.github.io/ERROR/
 
 - 纯单文件页面，无外部依赖，内联全部精灵图资源，离线也能玩。
 - 已从原始错误页中修复音频断言导致的“按空格无法开始”问题。
-- 适配桌面与手机竖屏；竖屏下恐龙画布不会与标题文字重叠。
-- 界面复刻标准 Chrome 断网页面：白底、无边框、三条建议与错误码。
+- 适配桌面与手机竖屏，界面复刻标准 Chrome 断网页面。
