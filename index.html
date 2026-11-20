@@ -8,19 +8,19 @@
 :root{--text-color:#3c4043;--google-blue-600:#1a73e8;--google-gray-700:#5f6368}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:#fff;color:var(--text-color);font:400 16px/1.55 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;overflow:hidden}
+body{background:#fff;color:var(--text-color);font:400 16px/1.55 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;overflow:auto}
 /* Chromium offline page layout */
 .offline .interstitial-wrapper{color:var(--text-color);font-size:1em;line-height:1.55;margin:14vh auto 0;max-width:600px;padding:100px 24px 0;position:relative;width:100%}
-#main-content{margin:0;padding-bottom:40px;position:relative}
+#main-content{margin:0;padding-bottom:1.5cm;position:relative}
 #main-message h1{font-size:1.5em;font-weight:400;margin:0 0 20px}
 #suggestions-list p{margin:0 0 6px;font-size:.95em;color:var(--text-color)}
 #suggestions-list ul{margin:0 0 18px;padding-left:22px;font-size:.95em}
 #suggestions-list li{margin:2px 0}
 #suggestions-list a{color:var(--google-blue-600);text-decoration:none;cursor:pointer}
 #offline-error-code{font-size:.85em;color:var(--google-gray-700)}
-/* bottom action row: reload + details toggle */
-#bottom-actions{position:fixed;left:0;right:0;bottom:0;background:#fff;z-index:5;box-shadow:0 -1px 0 rgba(0,0,0,.05)}
-.error-actions{display:flex;align-items:center;justify-content:space-between;max-width:600px;margin:0 auto;padding:14px 24px 18px}
+/* action row below the error code: reload + details toggle */
+#bottom-actions{max-width:600px;margin:0 auto;padding:0 24px}
+.error-actions{display:flex;align-items:center;justify-content:space-between}
 .error-actions button{font:500 14px/1 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;border-radius:999px;padding:11px 22px;cursor:pointer;transition:background .15s,box-shadow .15s}
 .btn-reload{background:var(--google-blue-600);color:#fff;border:1px solid var(--google-blue-600)}
 .btn-reload:hover{background:#1765cc}
@@ -28,11 +28,11 @@ body{background:#fff;color:var(--text-color);font:400 16px/1.55 'Segoe UI',Arial
 .btn-detail:hover{background:#f8f9fa}
 .btn-detail:focus-visible,.btn-reload:focus-visible{outline:3px solid #8ab4f8;outline-offset:2px}
 /* collapsible detail panel */
-.detail-panel{max-width:600px;margin:0 auto;padding:0 24px;display:none;max-height:38vh;overflow-y:auto}
+.detail-panel{margin:0;display:none}
 .detail-panel.open{display:block}
 .detail-panel h2{font-size:.95em;font-weight:600;margin:18px 0 4px}
 .detail-panel p{font-size:.95em;color:var(--google-gray-700);margin:0 0 4px;line-height:1.6}
-@media(max-width:640px){.error-actions{padding:14px 18px 18px}.detail-panel{padding:0 18px}}
+@media(max-width:640px){#bottom-actions{padding:0 18px}}
 /* runner canvas sits above the message, exactly like the offline page */
 .offline .runner-container{direction:ltr;height:150px;max-width:600px;overflow:hidden;position:absolute;left:40px;top:-52px;width:44px;cursor:default}
 .offline .runner-container:focus{outline:none}
@@ -64,6 +64,10 @@ body{background:#fff;color:var(--text-color);font:400 16px/1.55 'Segoe UI',Arial
   </div>
 </div>
 <div id="bottom-actions">
+  <div class="error-actions">
+    <button type="button" class="btn-reload" onclick="location.reload()">重新加载</button>
+    <button type="button" class="btn-detail" id="detailToggle" aria-expanded="false" aria-controls="detailPanel">详情</button>
+  </div>
   <div class="detail-panel" id="detailPanel">
     <h2>请检查您的互联网连接是否正常</h2>
     <p>请检查所有网线是否都已连好，然后重新启动您可能正在使用的任何路由器、调制解调器或其他网络设备。</p>
@@ -71,10 +75,6 @@ body{background:#fff;color:var(--text-color);font:400 16px/1.55 'Segoe UI',Arial
     <p>如果它已在可访问网络的程序列表中，请尝试将它从该列表中移除，然后重新添加到其中。</p>
     <h2>如果您使用代理服务器...</h2>
     <p>依次前往 Chrome 菜单 &gt; “设置” &gt; “系统” &gt; “打开您计算机的设置”&gt;“网络和 Internet”&gt;“代理”，然后取消选择“自动检测设置”。</p>
-  </div>
-  <div class="error-actions">
-    <button type="button" class="btn-reload" onclick="location.reload()">重新加载</button>
-    <button type="button" class="btn-detail" id="detailToggle" aria-expanded="false" aria-controls="detailPanel">详情</button>
   </div>
 </div>
 <div id="offline-resources">
